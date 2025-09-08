@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>el与data的两种写法</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>你好, {{name}}</h1>
+    </div>
+</body>
+
+<script type="text/javascript">
+    const vm = new Vue({
+        // el: "#root",
+        // data: {
+        //     name: "Vue"
+        // }
+        data() {
+            return {
+                name: "Vue"
+            }
+        }
+    });
+
+    vm.$mount("#root")
+</script>
+
+</html>
