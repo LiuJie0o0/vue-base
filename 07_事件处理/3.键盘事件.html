@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>键盘事件</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>欢迎来到{{name}}学习</h1>
+        <!-- 
+            回车 => enter
+            删除 => delete
+            退出 => esc
+            空格 => space
+            换行 => tab
+            上   => up
+            下   => down
+            左   => left
+            右   => right
+         -->
+        <input type="text" placeholder="按下回车提示输入" @keyup.enter="showInfo" />
+    </div>
+</body>
+
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#root",
+        data() {
+            return {
+                name: "Vue"
+            }
+        },
+        methods: {
+            showInfo(event) {
+                console.log(event.target.value);
+            }
+        }
+    });
+</script>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>深度监视</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>a的值: {{numbers.a}}</h2>
+        <button @click="addA">点我a+1</button>
+        <h2>b的值: {{numbers.b}}</h2>
+        <button @click="addB">点我b+1</button>
+    </div>
+</body>
+
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#root",
+        data() {
+            return {
+                numbers: {
+                    a: 0,
+                    b: 0
+                }
+            }
+        },
+        methods: {
+            addA() {
+                return this.numbers.a += 1;
+            },
+            addB() {
+                return this.numbers.b += 1;
+            }
+        },
+        watch: {
+            numbers: {
+                deep: true,
+                handler() {
+                    console.log("numbers被修改了");
+                }
+            }
+        }
+    });
+</script>
+
+</html>

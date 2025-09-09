@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>事件的基本使用</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>欢迎来到{{name}}学习</h1>
+        <button v-on:click="showInfo1">点我提示信息1</button>
+        <button @click="showInfo2($event, 2)">点我提示信息2</button>
+    </div>
+</body>
+
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#root",
+        data() {
+            return {
+                name: "Vue"
+            }
+        },
+        methods: {
+            showInfo1(event) {
+                console.log(event, "同学1你好");
+            },
+            showInfo2(event, num) {
+                console.log(event);
+                console.log("同学2你好")
+                console.log(num);
+            }
+        }
+    });
+</script>
+
+</html>
