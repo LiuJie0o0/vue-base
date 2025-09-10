@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>条件渲染</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1 v-show="false">欢迎来到{{name}}</h1>
+        <h2>Num的值: {{num}}</h2>
+        <h2>大于5时, 哭脸消失<span v-show="num <= 5">🙁</span></h2>
+        <button @click="addNum(1)">点我Num+1</button>
+        <button @click="addNum(-1)">点我Num-1</button>
+        <h2>取3的模: </h2>
+        <span v-if="num % 3 == 0">Vue</span>
+        <span v-else-if="num % 3 == 1">React</span>
+        <span v-else="num % 3 == 2">Angular</span>
+    </div>
+</body>
+
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#root",
+        data() {
+            return {
+                name: "Vue",
+                num: 0
+            }
+        },
+        methods: {
+            addNum(value) {
+                this.num += value;
+            }
+        }
+    });
+</script>
+
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>列表过滤</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>人员列表</h2>
+        <input type="text" v-model="keyword" placeholder="请输入名字">
+        <ul>
+            <li v-for="p in filterPersons" :key="p.id">
+                {{p.id}}: {{p.name}} - {{p.age}} - {{p.sex}}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="p in coomputedFilterPersons" :key="p.id">
+                {{p.id}}: {{p.name}} - {{p.age}} - {{p.sex}}
+            </li>
+        </ul>
+    </div>
+</body>
+
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#root",
+        data() {
+            return {
+                persons: [
+                    { id: 1001, name: "马冬梅", age: 19, sex: "女" },
+                    { id: 1002, name: "周冬雨", age: 20, sex: "女" },
+                    { id: 1003, name: "周杰伦", age: 21, sex: "男" },
+                    { id: 1004, name: "温兆伦", age: 22, sex: "男" }
+                ],
+                keyword: "",
+                filterPersons: []
+            }
+        },
+        computed: {
+            coomputedFilterPersons() {
+                return this.persons.filter(p => {
+                    return p.name.indexOf(this.keyword) !== -1;
+                });
+            }
+        },
+        methods: {
+        },
+        watch: {
+            keyword: {
+                immediate: true,
+                handler(value) {
+                    this.filterPersons = this.persons.filter(p => {
+                        return p.name.indexOf(value) !== -1;
+                    });
+                }
+            }
+        }
+    });
+</script>
+
+</html>

@@ -7,12 +7,58 @@
     <script type="text/javascript" src="../js/vue.js"></script>
 
     <style>
-        
+        .base {
+            width: 350px;
+            height: 100px;
+            border: 2px rgb(0, 0, 0) solid;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .red {
+            background-color: rgb(255, 0, 0);
+        }
+
+        .yellow {
+            background-color: rgb(255, 255, 0);
+        }
+
+        .green {
+            background-color: rgb(0, 128, 0);
+        }
+
+        .bgc {
+            background-color: rgb(135, 206, 235);
+        }
+
+        .border {
+            border-radius: 10px;
+        }
+
+        .size {
+            font-size: large;
+        }
     </style>
 </head>
 
 <body>
     <div id="root">
+        <!-- 绑定class样式: 字符串写法, 适用于样式类名不确定, 动态指定 -->
+        <div class="base" :class="classStr" @click="changeClassStr">{{name}}</div><br /><br />
+
+        <!-- 绑定class样式: 数组写法, 适用于样式个数不确定、名称也不确定 -->
+        <div class="base" :class="classArr">{{name}}</div><br /><br />
+
+        <!-- 绑定class样式: 对象写法, 适用于样式个数、名称都确定, 动态决定是否使用 -->
+        <div class="base" :class="classObj">{{name}}</div><br /><br />
+
+        <!-- 绑定style样式: 对象写法 -->
+        <div class="base" :style="styleObj">{{name}}</div><br /><br />
+
+        <!-- 绑定style样式: 数组写法 -->
+        <div class="base" :style="styleArr">{{name}}</div>
     </div>
 </body>
 
@@ -21,9 +67,34 @@
         el: "#root",
         data() {
             return {
+                name: "Vue",
+                classStr: "red",
+                classArr: ["bgc", "border", "size",],
+                classObj: {
+                    bgc: true,
+                    border: false,
+                    size: true
+                },
+                styleObj: {
+                    fontSize: "25px",
+                    color: "red"
+                },
+                styleArr: [
+                    {
+                        fontSize: "25px",
+                        color: "blue"
+                    },
+                    {
+                        backgroundColor: "grey"
+                    }
+                ]
             }
         },
         methods: {
+            changeClassStr() {
+                const arr = ["red", "yellow", "green"];
+                this.classStr = arr[Math.floor(Math.random() * 3)];
+            }
         }
     });
 </script>
