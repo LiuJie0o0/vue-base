@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>vue.set使用</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>名称: {{name}}</h2>
+        <h2>地址: {{address}}</h2>
+        <hr>
+        <h2>姓名: {{student.name}}</h2>
+        <h2>年龄: 真实 {{student.age.rAge}}, 对外 {{student.age.</h2>
+    </div>
+</body>
+
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#root",
+        data() {
+            return {
+                name: "Vue",
+                address: "https://vuejs.org/",
+                student: {
+                    name: "假老练",
+                    age: {
+                        rAge: 22,
+                        vAge: 18
+                    }
+                },
+                firends: [
+                    {
+                        name: "黑娃",
+                        age: 22
+                    },
+                    {
+                        name: "火娃",
+                        age: 21
+                    }
+                ]
+            }
+        },
+        methods: {
+        }
+    });
+</script>
+
+</html>

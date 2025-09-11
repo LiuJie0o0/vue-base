@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue监测数据改变的原理</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>名称: {{name}}</h2>
+        <h2>地址: {{address}}</h2>
+    </div>
+</body>
+
+<script type="text/javascript">
+    const vm = new Vue({
+        el: "#root",
+        data() {
+            return {
+                name: "Vue",
+                address: "https://vuejs.org/"
+            }
+        },
+        methods: {
+        }
+    });
+</script>
+
+</html>
