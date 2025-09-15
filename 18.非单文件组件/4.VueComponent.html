@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>VueComponent.</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <school></school>
+    </div>
+</body>
+
+<script type="text/javascript">
+    const school = Vue.extend({
+        template: `
+        <div>
+            <h2>名称: {{name}}</h2>
+            <h2>地址: {{address}}</h2>
+        </div>
+        `,
+        data() {
+            return {
+                name: "Vue",
+                address: "https://vuejs.org/"
+            }
+        }
+    });
+
+    console.log("@", school);
+
+    const vm = new Vue({
+        el: "#root",
+        components: { school }
+    });
+</script>
+
+</html>

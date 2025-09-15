@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>一个重要的内置关系</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- 
+            VueComponent.prototype.__proto__ === Vue.prototype
+         -->
+    </div>
+</body>
+
+<script type="text/javascript">
+    function Demo() {
+        this.a = 1;
+        this.b = 2;
+    }
+
+    const d = new Demo();
+
+    console.log(Demo.prototype);
+
+    console.log(d.__proto__);
+
+    Demo.prototype.x = 99;
+
+    console.log(d.x);
+</script>
+
+</html>

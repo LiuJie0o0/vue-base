@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>组件的嵌套</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+    </div>
+</body>
+
+<script type="text/javascript">
+    const student = Vue.extend({
+        template: `
+        <div>
+            <h2>姓名: {{name}}</h2>
+            <h2>年龄: {{age}}</h2>
+        </div>
+        `,
+        data() {
+            return {
+                name: "假老练",
+                age: 22
+            }
+        }
+    });
+
+    const school = Vue.extend({
+        template: `
+        <div>
+            <h2>名称: {{name}}</h2>
+            <h2>地址: {{address}}</h2>
+            <hr>
+            <student></student>
+        </div>
+        `,
+        components: { student },
+        data() {
+            return {
+                name: "Vue",
+                address: "https://vuejs.org/"
+            }
+        }
+    });
+
+    const app = Vue.extend({
+        template: `
+        <school></school>
+        `,
+        components: { school }
+    })
+
+    const vm = new Vue({
+        template: `
+        <app></app>
+        `,
+        el: "#root",
+        components: { app }
+    });
+</script>
+
+</html>

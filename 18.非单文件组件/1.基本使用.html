@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>基本使用</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <school></school>
+        <hr>
+        <student></student>
+    </div>
+</body>
+
+<script type="text/javascript">
+    const school = Vue.extend({
+        template: `
+        <div>
+            <h2>名称: {{name}}</h2>
+            <h2>地址: {{address}}</h2>
+        </div>
+        `,
+        data() {
+            return {
+                name: "Vue",
+                address: "https://vuejs.org/"
+            }
+        }
+    });
+
+    const student = Vue.extend({
+        template: `
+        <div>
+            <h2>姓名: {{name}}</h2>
+            <h2>年龄: {{age}}</h2>
+        </div>
+        `,
+        data() {
+            return {
+                name: "假老练",
+                age: 22
+            }
+        }
+    });
+
+    const vm = new Vue({
+        el: "#root",
+        components: {
+            school,
+            student
+        },
+    });
+</script>
+
+</html>
