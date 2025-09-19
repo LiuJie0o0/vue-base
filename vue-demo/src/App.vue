@@ -1,89 +1,50 @@
 <template>
-    <div class="todo-container">
-        <todo-header @addTodo="addTodo"></todo-header>
-        <todo-list :todoList="todoList"></todo-list>
-        <todo-footer :todoList="todoList" @deleteDone="deleteDone" @changeAllDone="changeAllDone"></todo-footer>
+    <div class="container">
+        <Category title="美食" :listData="foods">
+            <img slot="center" src="../images/vite.jpg" alt="vite" width="150px">
+            <a slot="footer" href="https://cn.vitejs.dev/">更多...</a>
+        </Category>
+        <Category title="游戏" :listData="games">
+            <template v-slot:center>
+                <ul>
+                    <li v-for="(name, index) in games" :key="index">
+                        {{  name }}
+                    </li>
+                </ul>
+            </template>
+            <a slot="footer" href="https://cn.vitejs.dev/">更多...</a>
+        </Category>
+        <Category title="电影" :listData="films"></Category>
     </div>
 </template>
 
 <script>
-import TodoHeader from './components/TodoHeader.vue'
-import TodoList from './components/TodoList.vue'
-import TodoFooter from './components/TodoFooter.vue'
+import Category from "./components/Category.vue"
 
 export default {
     name: "App",
     components: {
-        TodoHeader,
-        TodoList,
-        TodoFooter
+        Category
     },
     data() {
         return {
-            todoList: [
-                { id: "1001", title: "抽烟", done: true },
-                { id: "1002", title: "喝酒", done: true },
-                { id: "1003", title: "烫头", done: false }
-            ]
+            foods: ["火锅", "烧烤", "龙虾", "牛排"],
+            games: ["红色警戒", "穿越火线", "反恐精英", "超级玛丽"],
+            films: ["《教父》", "《拆弹专家》", "《你好，李焕英》","《肖申克的救赎》"]
         }
     },
     methods: {
-        addTodo(todoObj) {
-            this.todoList.unshift(todoObj)
-        },
-        editTodo(id, title) {
-            this.todoList.forEach(todo => {
-                if (id === todo.id) {
-                    todo.title = title
-                }
-            })
-        },
-        deleteTodo(id) {
-            this.todoList = this.todoList.filter(todo => {
-                return id !== todo.id
-            })
-        },
-        deleteDone() {
-            this.todoList = this.todoList.filter(todo => {
-                return !todo.done
-            })
-        },
-        changeDone(id) {
-            this.todoList.forEach(todo => {
-                if (id === todo.id) {
-                    todo.done = !todo.done
-                }
-            })
-        },
-        changeAllDone(done) {
-            this.todoList.forEach(todo => {
-                todo.done = done
-            })
-        }
-    },
-    mounted() {
-        this.$bus.$on("editTodo", this.editTodo)
-        this.$bus.$on("deleteTodo", this.deleteTodo)
-        this.$bus.$on("changeDone", this.changeDone)
-    },
-    beforeDestroy() {
-        this.$bus.$off("editTodo")
-        this.$bus.$off("deleteTodo")
-        this.$bus.$off("changeDone")
+
     }
 }
 </script>
 
 <style scoped>
-.todo-container {
-    margin-top: 50px;
-    width: 420px;
-    min-width: 420px;
-    background: rgba(30, 41, 59, 0.7);
-    border: 1px solid #334155;
-    border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
-    padding: 20px;
+.container {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-evenly;
+    align-items: center;
 }
 </style>
